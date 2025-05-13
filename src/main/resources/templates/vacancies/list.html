@@ -10,7 +10,6 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Имя</th>
-                <th scope="col">Описание</th>
                 <th scope="col">Дата создания</th>
             </tr>
             </thead>
@@ -18,7 +17,6 @@
             <tr th:each="vacancy: ${vacancies}">
                 <td th:text="${vacancy.id}" />
                 <td th:text="${vacancy.title}" />
-                <td th:text="${vacancy.description}" />
                 <td th:text="${#temporals.format(vacancy.creationDate, 'dd-MM-yyyy HH:mm')}" />
             </tr>
             </tbody>
