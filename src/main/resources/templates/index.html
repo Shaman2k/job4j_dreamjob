@@ -3,6 +3,15 @@
 <head th:include="fragments/header :: header"></head>
 <body>
 <div th:replace="fragments/navigation :: navigation"></div>
+<h1>
+    Проект job4j_dreamjob
+</h1>
+<div>
+    <a class="nav-item nav-link" th:href="@{/vacancies}">Вакансии</a>
+    <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
+    <a class="nav-item nav-link" th:href="@{/vacancies/create}">Создать вакансию</a>
+    <a class="nav-item nav-link" th:href="@{/candidates/create}">Создать резюме</a>
+</div>
 <div class="container">
     <div class="row">
         <table class="table">
