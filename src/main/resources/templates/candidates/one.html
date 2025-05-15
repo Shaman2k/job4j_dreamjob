@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
+<body>
+<div th:replace="fragments/navigation :: navigation"></div>
+<div class="container">
+    <form class="mt-3" th:action="@{/candidates/update}" method="post" th:object="${candidate}">
+        <input type="hidden" name="id" th:field="*{id}">
+        <div class="mb-3">
+            <label for="name" class="form-label"><b>Название</b></label>
+            <input type="text" class="form-control" id="name" name="name"
+                   th:field="*{name}"
+                   placeholder="ФИО">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label"><b>Описание</b></label>
+            <textarea class="form-control" id="description"
+                      name="description" th:field="*{description}"
+                      rows="25" placeholder="Опишите требования к кандидату"></textarea>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-6"></div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4"><a class="btn btn-light w-100"
+                                          th:href="@{/candidates}">Отмена</a></div>
+                    <div class="col-4"><a class="btn btn-danger w-100"
+                                          th:href="@{/candidates/delete/{id}(id=${candidate.id})}">Удалить</a></div>
+                    <div class="col-4">
+                        <button class="btn btn-success w-100"
+                                type="submit">Обновить
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<footer th:include="fragments/footer :: footer"></footer>
+</body>
+</html>

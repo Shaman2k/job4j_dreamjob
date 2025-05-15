@@ -16,7 +16,11 @@
       <tbody>
       <tr th:each="candidate: ${candidates}">
         <td th:text="${candidate.id}" />
-        <td th:text="${candidate.name}" />
+        <td>
+          <a th:text="${candidate.name}"
+             th:href="@{/candidates/{candidateId}(candidateId=${candidate.id})}">
+          </a>
+        </td>
         <td th:text="${#temporals.format(candidate.creationDate, 'dd-MM-yyyy HH:mm')}" />
       </tr>
       </tbody>
