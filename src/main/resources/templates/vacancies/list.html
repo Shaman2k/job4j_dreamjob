@@ -15,9 +15,13 @@
             </thead>
             <tbody>
             <tr th:each="vacancy: ${vacancies}">
-                <td th:text="${vacancy.id}" />
-                <td th:text="${vacancy.title}" />
-                <td th:text="${#temporals.format(vacancy.creationDate, 'dd-MM-yyyy HH:mm')}" />
+                <td th:text="${vacancy.id}"/>
+                <td>
+                    <a th:text="${vacancy.title}"
+                       th:href="@{/vacancies/{vacancyId}(vacancyId=${vacancy.id})}">
+                    </a>
+                </td>
+                <td th:text="${#temporals.format(vacancy.creationDate, 'dd-MM-yyyy HH:mm')}"/>
             </tr>
             </tbody>
         </table>
