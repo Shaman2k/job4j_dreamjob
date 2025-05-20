@@ -15,8 +15,8 @@ public class SimpleVacancyService implements VacancyService {
     private final VacancyRepository vacancyRepository;
     private final FileService fileService;
 
-    public SimpleVacancyService(VacancyRepository vacancyRepository, FileService fileService) {
-        this.vacancyRepository = vacancyRepository;
+    public SimpleVacancyService(VacancyRepository sql2oVacancyRepository, FileService fileService) {
+        this.vacancyRepository = sql2oVacancyRepository;
         this.fileService = fileService;
     }
 
@@ -33,8 +33,13 @@ public class SimpleVacancyService implements VacancyService {
 
     @Override
     public boolean deleteById(int id) {
-        findById(id).ifPresent(vacancy -> fileService.deleteById(vacancy.getFileId()));
-        return vacancyRepository.deleteById(id);
+        var vacancyOptional = findById(id);
+        boolean result = false;
+        if (vacancyOptional.isPresent()) {
+            result = vacancyRepository.deleteById(id);
+            fileService.deleteById(vacancyOptional.get().getFileId());
+        }
+        return result;
     }
 
     @Override
