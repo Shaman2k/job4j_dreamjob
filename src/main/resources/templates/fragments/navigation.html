@@ -1,18 +1,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">Dream Job</a>
+        <a class="navbar-brand" href="/index">Dream Job</a>
         <div class="collapse navbar-collapse">
             <div class="navbar-nav me-auto">
-                <a class="nav-item nav-link active" href="/">Главная</a>
+                <a class="nav-item nav-link active" href="/index">Главная</a>
                 <a class="nav-item nav-link" th:href="@{/vacancies}">Вакансии</a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
                 <a class="nav-item nav-link" th:href="@{/vacancies/create}">Создать вакансию</a>
                 <a class="nav-item nav-link" th:href="@{/candidates/create}">Создать резюме</a>
             </div>
-            <div class="d-flex">
-                <a class="nav-link text-secondary" th:href="@{/users/register}">Регистрация</a>
+            <div class="d-flex" th:if="${user.name == 'Гость'}">
+                <a class="nav-link text-secondary me-3" th:href="@{/users/register}">Регистрация</a>
                 <a class="nav-link text-secondary" th:href="@{/users/login}">Войти</a>
+            </div>
+            <div class="d-flex" th:if="${user.name != 'Гость'}">
+                <a class="nav-link text-secondary me-3" href="#" th:text="${user.name}"></a>
+                <a class="nav-link text-secondary" th:href="@{/users/logout}">Выйти</a>
             </div>
         </div>
     </div>
