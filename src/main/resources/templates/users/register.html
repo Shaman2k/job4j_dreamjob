@@ -9,6 +9,9 @@
             <label for="name" class="form-label"><b>Имя</b></label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Иван" required>
         </div>
+        <div class="mb-3" th:if="${error}">
+            <p class="text-danger" th:text="${error}"></p>
+        </div>
         <div class="mb-3">
             <label for="email" class="form-label"><b>Почта</b></label>
             <input type="text" class="form-control" id="email" name="email" placeholder="ivan@mail.ru" required>

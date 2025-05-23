@@ -27,9 +27,13 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute User user) {
-        userService.save(user);
-        return "users/register";
+    public String register(Model model, @ModelAttribute User user) {
+        var userOptional = userService.save(user);
+        if (userOptional.isEmpty()) {
+            model.addAttribute("error", "Пользователь с таким email уже сужествует");
+            return "users/register";
+        }
+        return "redirect:/vacancies";
     }
 
     @GetMapping("/login")
